@@ -1,7 +1,7 @@
 const ApiFetch = async (apiUrl) => {
   try {
     const response = await fetch(apiUrl);
-    if (!response.ok) throw new Error("network was not ok");
+    if (!response.ok) throw new Error("Network response was not ok");
     console.log(response);
     return response.json();
   } catch (error) {
@@ -12,10 +12,14 @@ const ApiFetch = async (apiUrl) => {
 // display movie card
 const displayMovies = (movies) => {
   const movie_list = document.getElementById("movie_list");
+  movie_list.innerHTML = '';
 
-  movies.map((item) => {
+  const fragment = document.createDocumentFragment();
+
+  movies.forEach((item) => {
     const card = document.createElement("div");
     card.className = "bg-zinc-700 text-white p-4 rounded shadow";
+
     const title = document.createElement("h3");
     title.className = "text-xl font-semibold text-gray-100 mb-4";
     title.textContent = `Title: ${item.title}`;
@@ -30,64 +34,54 @@ const displayMovies = (movies) => {
 
     const movie_genres = document.createElement("p");
     movie_genres.className = "text-gray-200 mb-2";
-    movie_genres.textContent = `movie_genres: ${item.movie_genres}`;
+    movie_genres.textContent = `Genres: ${item.movie_genres}`;
 
     const date = document.createElement("p");
     date.className = "text-gray-200 mb-2";
-    date.textContent = `Realease Date: ${item.release_date}`;
+    date.textContent = `Release Date: ${item.release_date}`;
 
     const rating = document.createElement("p");
     rating.className = "text-gray-200";
     rating.textContent = `Rating: ${item.vote_average}`;
 
-    card.appendChild(title);
-    card.appendChild(image);
-    card.appendChild(overview);
-    card.appendChild(movie_genres);
-    card.appendChild(date);
-    card.appendChild(rating);
-
-    movie_list.appendChild(card);
+    card.append(title, image, overview, movie_genres, date, rating);
+    fragment.appendChild(card);
   });
+
+  movie_list.appendChild(fragment);
 };
+
 const movies = async () => {
-  const moviesData = [];
-  const data = await ApiFetch(`/api/movie`);
-  if (data) {
+  const moviesData = await ApiFetch(`/api/movie`);
+  if (moviesData) {
     console.log(data);
-    moviesData.push(...data);
     displayMovies(moviesData);
-  } else {
-    alert("no results found !! truy again");
   }
 
-  //search funtionality and Add event listener to the search button
-
+  // search functionality
   document.querySelector(".search_btn").addEventListener("click", (e) => {
     e.preventDefault();
-    const inputvalue = document.getElementById("inputvalue");
-    const text = inputvalue.value.trim().toLowerCase();
-    const filteredData = moviesData.filter((movie) => {
-      return (
-        movie.title.toLowerCase().includes(text) ||
-        movie.movie_genres.toLowerCase().includes(text) ||
-        movie.release_date.includes(text)
-      );
-      console.log(filteredData);
-    });
-    displayMovies(filteredData);
+    const inputvalue = document.getElementById("inputvalue")
+    const searchQuery = inputvalue.value.trim().toLowerCase();
+
+    const filteredMovies = moviesData.filter((movie) =>
+      movie.title.toLowerCase().includes(searchQuery) ||
+      movie.movie_genres.toLowerCase().includes(searchQuery) ||
+      movie.release_date.includes(searchQuery)
+    );
+    console.log(filteredMovies);
+    displayMovies(filteredMovies);
   });
 };
-movies();
 
-const jobs = async () => {
-  // const data = await ApiFetch(`/api/jobs?title=${title}`);
-  const data = await ApiFetch(`/api/jobs`);
-
-  console.log("jobData", data);
-
+// display job data
+const displayJobs = (jobs) => {
   const body = document.querySelector(".body");
-  data.map((employee) => {
+  body.innerHTML = '';
+
+  const fragment = document.createDocumentFragment();
+
+  jobs.forEach((employee) => {
     const row = document.createElement("tr");
 
     const emp_IdCell = document.createElement("td");
@@ -114,17 +108,29 @@ const jobs = async () => {
     jobTitleCell.className = "border border-gray-300 p-2";
     jobTitleCell.textContent = employee.job_title;
 
-    // Append cells to the row
-    row.appendChild(emp_IdCell);
-    row.appendChild(firstNameCell);
-    row.appendChild(lastNameCell);
-    row.appendChild(emailCell);
-    row.appendChild(genderCell);
-    row.appendChild(jobTitleCell);
+    row.append(emp_IdCell, firstNameCell, lastNameCell, emailCell, genderCell, jobTitleCell);
+    fragment.appendChild(row);
+  });
 
-    // Append the row to the body
-    body.appendChild(row);
+  body.appendChild(fragment);
+};
+
+const jobs = async () => {
+  const jobsData = await ApiFetch(`/api/jobs`);
+  if (jobsData) {
+    console.log("jobData", jobsData);
+    displayJobs(jobsData);
+  }
+
+  // filter
+  document.getElementById("selectJobTitle").addEventListener("change", async (e) => {
+    const jobTitle = e.target.value.toLowerCase();
+    const filteredJobs = jobsData.filter((job) =>
+      job.job_title.toLowerCase().includes(jobTitle)
+    );
+    displayJobs(filteredJobs);
   });
 };
 
+movies();
 jobs();
