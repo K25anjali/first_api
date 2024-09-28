@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My First Api Project</title>
+    <script src="script.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 text-White mb-10">
+    <h1
+      class="bg-zinc-700 text-white text-center text-3xl mb-10 font-bold py-3"
+    >
+      Welcome to my First Api Project
+    </h1>
+
+    <div class="px-12 my-5 flex gap-5">
+      <input
+        type="text"
+        placeholder="Search by name, genre or year"
+        id="inputvalue"
+        class="py-2 px-5 w-[300px] border border-zinc-800 rounded"
+      />
+      <button
+        class="search_btn font-semibold rounded bg-zinc-800 text-white px-4"
+      >
+        Search
+      </button>
+    </div>
+
+    <div id="movie_list" class="grid grid-cols-3 gap-4 px-10"></div>
+    <hr class="bg-zinc-800 mt-5" />
+    <h1
+      class="w-full bg-zinc-700 text-white text-center text-3xl mb-10 font-bold py-3 my-10"
+    >
+      Employee Details
+    </h1>
+    <div class="px-10">
+      <select id="selectJobTitle">
+        <option value="1" disabled selected>Filter By Job Title</option>
+        <option value="2">Operator</option>
+        <option value="3">Programmer Analyst I</option>
+        <option value="4">Account Executive</option>
+        <option value="5">Pharmacist</option>
+        <option value="6">Technical Writer</option>
+      </select>
+
+      <table class="min-w-full bg-white border border-gray-300">
+        <thead class="bg-zinc-400 text-white">
+          <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Job Title</th>
+          </tr>
+        </thead>
+
+        <tbody class="body"></tbody>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "first_name": "Dennie",
+    "last_name": "Baistow",
+    "email": "dbaistow0@posterous.com",
+    "gender": "Female",
+    "job_title": "Operator"
+  },
+  {
+    "id": 2,
+    "first_name": "Cinnamon",
+    "last_name": "Haverson",
+    "email": "chaverson1@xinhuanet.com",
+    "gender": "Female",
+    "job_title": "Programmer Analyst I"
+  },
+  {
+    "id": 3,
+    "first_name": "Marguerite",
+    "last_name": "Dartnell",
+    "email": "mdartnell2@yellowpages.com",
+    "gender": "Female",
+    "job_title": "Account Executive"
+  },
+  {
+    "id": 4,
+    "first_name": "Tanner",
+    "last_name": "Yeiles",
+    "email": "tyeiles3@pagesperso-orange.fr",
+    "gender": "Genderqueer",
+    "job_title": "Pharmacist"
+  },
+  {
+    "id": 5,
+    "first_name": "Joletta",
+    "last_name": "Vardie",
+    "email": "jvardie4@plala.or.jp",
+    "gender": "Female",
+    "job_title": "Technical Writer"
+  },
+  {
+    "id": 6,
+    "first_name": "Orrin",
+    "last_name": "Panketh",
+    "email": "opanketh5@omniture.com",
+    "gender": "Genderfluid",
+    "job_title": "Technical Writer"
+  },
+  {
+    "id": 7,
+    "first_name": "Orv",
+    "last_name": "Mould",
+    "email": "omould6@biglobe.ne.jp",
+    "gender": "Male",
+    "job_title": "Pharmacist"
+  },
+  {
+    "id": 8,
+    "first_name": "Brent",
+    "last_name": "Minero",
+    "email": "bminero7@mozilla.com",
+    "gender": "Male",
+    "job_title": "Operator"
+  },
+  {
+    "id": 9,
+    "first_name": "Phillida",
+    "last_name": "Moncur",
+    "email": "pmoncur8@zdnet.com",
+    "gender": "Female",
+    "job_title": "Operatorr"
+  },
+  {
+    "id": 10,
+    "first_name": "Elizabeth",
+    "last_name": "Tunmore",
+    "email": "etunmore9@example.com",
+    "gender": "Female",
+    "job_title": "MProgrammer Analyst I"
+  }
+]
