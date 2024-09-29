@@ -5,16 +5,20 @@ const jobs = require("./data/jobData.json");
 const PORT = 2000;
 
 const app = express();
-app.use(express.static("public"));
+
+app.use(express.static("public"));  
 
 app.get("/api/movie", (req, res) => {
   const { genre } = req.query;
 
-  // filteredData = movieData.filter((movie) =>
-  //   movie.movie_genres.toLowerCase().includes(genre.toLowerCase())
-  // );
+  let filteredMovies = movieData;
+  if (genre) {
+    filteredMovies = movieData.filter((movie) =>
+      movie.movie_genres.toLowerCase().includes(genre.toLowerCase())
+    );
+  }
 
-  res.json(movieData);
+  res.json(filteredMovies);
 });
 
 app.get("/api/jobs", (req, res) => {
@@ -26,7 +30,12 @@ app.get("/api/jobs", (req, res) => {
       job.job_title.toLowerCase().includes(title.toLowerCase())
     );
   }
+
   res.json(filteredJobs);
+});
+
+app.use((req, res) => {
+  res.status(404).send("Not Found");
 });
 
 app.listen(PORT, () => {
